@@ -1,0 +1,12 @@
+<script>
+const userId = localStorage.getItem("userId");
+const role = localStorage.getItem("role");
+
+// If not logged in → go back to login
+if (!userId || !role) {
+    window.location.href = "/";
+} else {
+    document.getElementById("info").innerText =
+        "Your User ID is: " + userId;
+}
+</script>

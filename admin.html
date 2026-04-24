@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+
+<h2>Admin Dashboard</h2>
+
+<p>Welcome Admin</p>
+
+<input id="userid" placeholder="Enter user ID" />
+<button onclick="getUser()">Get User</button>
+
+<pre id="output"></pre>
+
+<script>
+async function getUser() {
+    const id = document.getElementById("userid").value;
+
+    const res = await fetch("/user/" + id);
+    const data = await res.json();
+
+    document.getElementById("output").innerText =
+        JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>
