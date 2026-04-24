@@ -1,12 +1,33 @@
-<script>
-const userId = localStorage.getItem("userId");
-const role = localStorage.getItem("role");
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f1f5f9;
+            padding: 20px;
+        }
 
-// If not logged in → go back to login
-if (!userId || !role) {
-    window.location.href = "/";
-} else {
-    document.getElementById("info").innerText =
-        "Your User ID is: " + userId;
-}
-</script>
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Welcome to PPWDECHS</h2>
+
+<div class="card">
+    📢 Notice: Water supply will be off tomorrow
+</div>
+
+<div class="card">
+    📅 Meeting: Sunday 10 AM
+</div>
+
+</body>
+</html>

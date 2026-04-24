@@ -1,21 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>PPWDECHS Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .box {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #38bdf8;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0ea5e9;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Login</h2>
+<div class="box">
+    <h2>PPWDECHS Login</h2>
 
-<input id="username" placeholder="Username" />
-<br><br>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
 
-<input id="password" type="password" placeholder="Password" />
-<br><br>
+    <button onclick="login()">Login</button>
 
-<button onclick="login()">Login</button>
-
-<p id="result"></p>
+    <p id="result"></p>
+</div>
 
 <script>
 async function login() {
@@ -24,25 +59,22 @@ async function login() {
 
     const res = await fetch("/login", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })
     });
 
     const data = await res.json();
 
     if (data.success) {
-        localStorage.setItem("userId", data.userId);
         localStorage.setItem("role", data.role);
 
         if (data.role === "admin") {
-            window.location.href = "/admin.html";
+            window.location.href = "/admin";
         } else {
-            window.location.href = "/user.html";
+            window.location.href = "/user";
         }
     } else {
-        document.getElementById("result").innerText = "Login failed";
+        document.getElementById("result").innerText = "Invalid login";
     }
 }
 </script>

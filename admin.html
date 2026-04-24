@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Panel</title>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #0f172a;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .card {
+            background: #e2e8f0;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Admin Dashboard</h2>
+<div class="sidebar">
+    <h3>PPWDECHS Admin</h3>
+    <p>Dashboard</p>
+    <p>Users</p>
+    <p>Notices</p>
+</div>
 
-<p>Welcome Admin</p>
+<div class="main">
+    <h2>Admin Panel</h2>
 
-<input id="userid" placeholder="Enter user ID" />
-<button onclick="getUser()">Get User</button>
-
-<pre id="output"></pre>
-
-<script>
-async function getUser() {
-    const id = document.getElementById("userid").value;
-
-    const res = await fetch("/user/" + id);
-    const data = await res.json();
-
-    document.getElementById("output").innerText =
-        JSON.stringify(data, null, 2);
-}
-</script>
+    <div class="card">Total Users: 2</div>
+    <div class="card">Active Notices</div>
+    <div class="card">System Status: OK</div>
+</div>
 
 </body>
 </html>
