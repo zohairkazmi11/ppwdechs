@@ -5,28 +5,50 @@ const app = express();
 app.use(express.json());
 app.use(express.static(__dirname));
 
-/* USERS (temporary database) */
+/* TEMP DATABASE */
 const users = [
     { id: 1, username: "admin", password: "1234", role: "admin" },
-    { id: 2, username: "user1", password: "1111", role: "user" }
+    { id: 2, username: "user1", password: "", role: "user" } // CNIC users (no password)
 ];
 
-/* LOGIN API */
+/* LOGIN API (NEW FLOW) */
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
-    const user = users.find(
-        u => u.username === username && u.password === password
-    );
+    // 🔐 ADMIN LOGIN (2-step logic)
+    if (username === "admin") {
+        if (!password) {
+            return res.json({ step: "password_required" });
+        }
 
-    if (!user) {
-        return res.json({ success: false, message: "Invalid credentials" });
+        if (password === "1234") {
+            return res.json({
+                success: true,
+                role: "admin",
+                userId: 1
+            });
+        } else {
+            return res.json({
+                success: false,
+                message: "Wrong admin password"
+            });
+        }
     }
 
-    res.json({
+    // 👤 USER LOGIN (CNIC / username only)
+    const user = users.find(u => u.username === username);
+
+    if (!user) {
+        return res.json({
+            success: false,
+            message: "User not found"
+        });
+    }
+
+    return res.json({
         success: true,
-        userId: user.id,
-        role: user.role
+        role: "user",
+        userId: user.id
     });
 });
 
@@ -41,7 +63,7 @@ app.get("/user/:id", (req, res) => {
     res.json(user);
 });
 
-/* PAGES ROUTES */
+/* PAGES */
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
@@ -54,7 +76,7 @@ app.get("/user", (req, res) => {
     res.sendFile(__dirname + "/user.html");
 });
 
-/* START SERVER (Render compatible) */
+/* START SERVER */
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {

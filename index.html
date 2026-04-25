@@ -3,6 +3,7 @@
 <head>
     <title>PPWDECHS Login</title>
 
+    <!-- MOBILE RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -27,6 +28,7 @@
 
         h2 {
             text-align: center;
+            margin-bottom: 15px;
         }
 
         input {
@@ -36,6 +38,7 @@
             font-size: 16px;
             border-radius: 6px;
             border: none;
+            outline: none;
         }
 
         button {
@@ -54,7 +57,8 @@
 
         #result {
             text-align: center;
-            color: red;
+            margin-top: 10px;
+            color: #f87171;
         }
     </style>
 </head>
@@ -64,8 +68,10 @@
 <div class="box">
     <h2>PPWDECHS Login</h2>
 
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
+    <input id="username" placeholder="Enter CNIC / Username">
+
+    <!-- hidden initially for admin -->
+    <input id="password" type="password" placeholder="Admin Password" style="display:none;">
 
     <button onclick="login()">Login</button>
 
@@ -73,26 +79,43 @@
 </div>
 
 <script>
+let adminStep = false;
+
 async function login() {
     const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const passwordField = document.getElementById("password");
+    const password = passwordField.value;
 
     const res = await fetch("/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({
+            username,
+            password: adminStep ? password : ""
+        })
     });
 
     const data = await res.json();
 
+    // STEP 1: admin detected → show password field
+    if (data.step === "password_required") {
+        adminStep = true;
+        passwordField.style.display = "block";
+        document.getElementById("result").innerText = "Enter admin password";
+        return;
+    }
+
+    // SUCCESS LOGIN
     if (data.success) {
+        localStorage.setItem("role", data.role);
+
         if (data.role === "admin") {
             window.location.href = "/admin";
         } else {
             window.location.href = "/user";
         }
     } else {
-        document.getElementById("result").innerText = "Invalid login";
+        document.getElementById("result").innerText = data.message || "Login failed";
     }
 }
 </script>
