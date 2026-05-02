@@ -24,12 +24,13 @@
 
         .card {
             background: #e2e8f0;
-            padding: 20px;
-            margin: 10px;
+            padding: 15px;
+            margin: 10px 0;
             border-radius: 10px;
         }
     </style>
 </head>
+
 <body>
 
 <div class="sidebar">
@@ -42,10 +43,35 @@
 <div class="main">
     <h2>Admin Panel</h2>
 
-    <div class="card">Total Users: 2</div>
-    <div class="card">Active Notices</div>
-    <div class="card">System Status: OK</div>
+    <div class="card" id="totalUsers">Loading...</div>
+
+    <div class="card">
+        <h3>User List</h3>
+        <div id="userList"></div>
+    </div>
 </div>
+
+<script>
+async function loadUsers() {
+    const res = await fetch("/users");
+    const users = await res.json();
+
+    document.getElementById("totalUsers").innerText =
+        "Total Users: " + users.length;
+
+    const list = document.getElementById("userList");
+    list.innerHTML = "";
+
+    users.forEach(u => {
+        const div = document.createElement("div");
+        div.innerText = u.CNIC || "No CNIC";
+        div.style.padding = "5px";
+        list.appendChild(div);
+    });
+}
+
+loadUsers();
+</script>
 
 </body>
 </html>

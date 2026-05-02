@@ -3,7 +3,6 @@
 <head>
     <title>PPWDECHS Login</title>
 
-    <!-- MOBILE RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -70,7 +69,6 @@
 
     <input id="username" placeholder="Enter CNIC / Username">
 
-    <!-- hidden initially for admin -->
     <input id="password" type="password" placeholder="Admin Password" style="display:none;">
 
     <button onclick="login()">Login</button>
@@ -86,7 +84,7 @@ async function login() {
     const passwordField = document.getElementById("password");
     const password = passwordField.value;
 
-    const res = await fetch("/login", {
+    const res = await fetch(window.location.origin + "/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -115,7 +113,8 @@ async function login() {
             window.location.href = "/user";
         }
     } else {
-        document.getElementById("result").innerText = data.message || "Login failed";
+        document.getElementById("result").innerText =
+            data.message || "Login failed";
     }
 }
 </script>
