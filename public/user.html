@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Panel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #3b82f6, #10b981);
+            background-size: 400% 400%;
+            animation: bg 10s ease infinite;
+        }
+
+        @keyframes bg {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .card {
+            width: 420px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(18px);
+            border-radius: 16px;
+            padding: 25px;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            padding: 10px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            color: white;
+        }
+
+        .msg {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        body::after {
+            content: "KAZMI";
+            position: fixed;
+            right: 20px;
+            bottom: 30px;
+            font-size: 30px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.06);
+            transform: rotate(-25deg);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>User Panel</h2>
+
+    <div id="content">Loading...</div>
+
+    <div id="editBox" style="display:none;">
+        <div class="row">
+            <b>Edit Phone</b>
+            <input id="phoneInput" placeholder="Enter phone number">
+        </div>
+
+        <button onclick="savePhone()">Save Changes</button>
+    </div>
+
+    <div class="msg" id="msg"></div>
+</div>
+
+<script>
+
+let currentUser = null;
+const cnic = localStorage.getItem("cnic");
+
+/* LOGIN CHECK */
+if (!cnic) {
+    document.body.innerHTML = "<h2 style='color:white'>❌ No login found</h2>";
+}
+
+/* LOAD USER */
+fetch("/users")
+.then(res => res.json())
+.then(users => {
+
+    currentUser = users.find(u => u.CNIC === cnic);
+
+    if (!currentUser) {
+        document.getElementById("content").innerHTML =
+            "<div class='msg'>❌ User not found</div>";
+        return;
+    }
+
+    renderUser(currentUser);
+});
+
+/* RENDER USER */
+function renderUser(u) {
+
+    document.getElementById("content").innerHTML = `
+        <div class="row"><b>Name:</b> ${u.Name || "N/A"}</div>
+        <div class="row"><b>CNIC:</b> ${u.CNIC || "N/A"}</div>
+        <div class="row"><b>Plot No:</b> ${u.Plot_No || "N/A"}</div>
+        <div class="row"><b>Plot Size:</b> ${u.Plot_Size || "N/A"}</div>
+        <div class="row"><b>Phone:</b> ${u.Phone || "N/A"}</div>
+        <div class="row"><b>Cost of Land:</b> ${u.Cost_of_Land ?? "N/A"}</div>
+        <div class="row"><b>Development Charges:</b> ${u.Development_Charges ?? "N/A"}</div>
+    `;
+
+    document.getElementById("editBox").style.display = "block";
+    document.getElementById("phoneInput").value = u.Phone || "";
+}
+
+/* SAVE PHONE */
+function savePhone() {
+
+    const phone = document.getElementById("phoneInput").value.trim();
+
+    fetch("/update-user-phone", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            CNIC: currentUser.CNIC,
+            Phone: phone
+        })
+    })
+    .then(async (res) => {
+
+        console.log("STATUS:", res.status);
+
+        const text = await res.text();
+        console.log("RAW RESPONSE:", text);
+
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            throw new Error("Server did not return JSON");
+        }
+    })
+    .then(data => {
+
+        console.log("PARSED:", data);
+
+        if (!data.success) {
+            document.getElementById("msg").innerText =
+                "❌ " + (data.message || "Update failed");
+            return;
+        }
+
+        document.getElementById("msg").innerText =
+            "✅ " + data.message;
+
+        currentUser.Phone = phone;
+        renderUser(currentUser);
+    })
+    .catch(err => {
+        console.error("ERROR:", err);
+        document.getElementById("msg").innerText =
+            "❌ Server error (check console)";
+    });
+}
+
+</script>
+
+</body>
+</html>

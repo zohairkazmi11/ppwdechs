@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PPWDECHS Admin Panel</title>
+
+<style>
+
+/* ===================== ANIMATED BACKGROUND ===================== */
+body {
+    margin: 0;
+    font-family: Arial;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+
+    background: linear-gradient(-45deg,
+        #0f172a,
+        #1e293b,
+        #3b82f6,
+        #10b981,
+        #6366f1
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===================== WATERMARK ===================== */
+body::after {
+    content: "KAZMI";
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    font-size: 45px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    transform: rotate(-25deg);
+    pointer-events: none;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+    width: 240px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: #38bdf8;
+}
+
+.menu button {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+/* colors */
+.btn-dashboard { background: #6366f1; }
+.btn-plots { background: #10b981; }
+.btn-users { background: #f59e0b; }
+.btn-logout { background: #ef4444; }
+
+/* ===================== MAIN ===================== */
+.main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.section {
+    display: none;
+}
+
+/* glass cards */
+.card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ===================== TABLE ===================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+}
+
+th {
+    background: rgba(0,0,0,0.4);
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+tr:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border: none;
+}
+
+button.search {
+    width: 100%;
+    padding: 10px;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>🏢 PPWDECHS</h2>
+
+    <div class="menu">
+        <button class="btn-dashboard" onclick="show('dashboard')">📊 Dashboard</button>
+        <button class="btn-plots" onclick="show('plots')">📍 Plot Tracking</button>
+        <button class="btn-users" onclick="show('users')">👥 Users</button>
+        <button class="btn-logout" onclick="logout()">🚪 Logout</button>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="section">
+        <div class="card">
+            <h2>Dashboard</h2>
+            <h3>Total Users: <span id="count">0</span></h3>
+        </div>
+    </div>
+
+    <!-- PLOTS -->
+    <div id="plots" class="section">
+        <div class="card">
+            <h2>Plot Tracking</h2>
+            <input id="plotInput" placeholder="Enter Plot No (A-20)">
+            <button class="search" onclick="searchPlot()">Search</button>
+        </div>
+
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>CNIC</th>
+                        <th>Plot</th>
+                        <th>Size</th>
+                        <th>Phone</th>
+                        <th>Cost</th>
+                        <th>Dev</th>
+                    </tr>
+                </thead>
+                <tbody id="plotResultTable">
+                    <tr><td colspan="7">Search a plot</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- USERS -->
+    <div id="users" class="section">
+        <div class="card">
+            <h2>Users Table</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>CNIC</th>
+                        <th>Plot</th>
+                        <th>Size</th>
+                        <th>Phone</th>
+                        <th>Cost</th>
+                        <th>Dev</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable"></tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (localStorage.getItem("role") !== "admin") {
+        window.location.href = "/";
+        return;
+    }
+
+    let users = [];
+
+    fetch("/users")
+        .then(res => res.json())
+        .then(data => {
+            users = data || [];
+            document.getElementById("count").innerText = users.length;
+            renderUsers();
+        });
+
+    window.show = function(id) {
+        document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+        document.getElementById(id).style.display = "block";
+    };
+
+    show("dashboard");
+
+    window.logout = function() {
+        localStorage.clear();
+        window.location.href = "/";
+    };
+
+    function renderUsers() {
+        let table = document.getElementById("userTable");
+        table.innerHTML = "";
+
+        users.forEach(u => {
+            table.innerHTML += `
+            <tr>
+                <td>${u.Name || "N/A"}</td>
+                <td>${u.CNIC || "N/A"}</td>
+                <td>${u.Plot_No || "N/A"}</td>
+                <td>${u.Plot_Size || "N/A"}</td>
+                <td>${u.Phone || "N/A"}</td>
+                <td>${u.Cost_of_Land || 0}</td>
+                <td>${u.Development_Charges || 0}</td>
+            </tr>`;
+        });
+    }
+
+    window.searchPlot = function() {
+        let plot = document.getElementById("plotInput").value.trim();
+        let table = document.getElementById("plotResultTable");
+
+        let user = users.find(u => u.Plot_No === plot);
+
+        if (!user) {
+            table.innerHTML = `<tr><td colspan="7">❌ No record found</td></tr>`;
+            return;
+        }
+
+        table.innerHTML = `
+        <tr>
+            <td>${user.Name || "N/A"}</td>
+            <td>${user.CNIC || "N/A"}</td>
+            <td>${user.Plot_No || "N/A"}</td>
+            <td>${user.Plot_Size || "N/A"}</td>
+            <td>${user.Phone || "N/A"}</td>
+            <td>${user.Cost_of_Land || 0}</td>
+            <td>${user.Development_Charges || 0}</td>
+        </tr>`;
+    };
+
+});
+
+</script>
+
+</body>
+</html>

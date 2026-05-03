@@ -1,104 +1,100 @@
-const xlsx = require("xlsx");
 const express = require("express");
+const fs = require("fs");
 const path = require("path");
 
 const app = express();
+const PORT = 3000;
 
-/* ======================
-   LOAD EXCEL DATA
-====================== */
-const workbook = xlsx.readFile(
-    path.join(__dirname, "ppwdechs_users.xlsx")
-);
-
-const sheet = workbook.Sheets[workbook.SheetNames[0]];
-const excelUsers = xlsx.utils.sheet_to_json(sheet);
-
-/* ======================
-   MIDDLEWARE
-====================== */
 app.use(express.json());
-app.use(express.static(__dirname));
 
-/* ======================
-   ADMIN DATA
-====================== */
-const admins = [
-    { username: "admin", password: "1234" }
-];
+// =========================
+// SERVE FRONTEND (IMPORTANT FIX)
+// =========================
+app.use(express.static(path.join(__dirname, "public")));
 
-/* ======================
-   LOGIN API
-====================== */
+// =========================
+// LOAD USERS FILE
+// =========================
+const USERS_FILE = path.join(__dirname, "users.json");
+
+function readUsers() {
+    return JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
+}
+
+function saveUsers(users) {
+    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+}
+
+// =========================
+// HOME ROUTE (FIX / ERROR)
+// =========================
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/login.html"));
+});
+
+// =========================
+// LOGIN ROUTE
+// =========================
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
-    // ADMIN LOGIN
-    const admin = admins.find(
-        a => a.username === username && a.password === password
+    let users = readUsers();
+
+    const admin = users.find(
+        u => u.role === "admin" && u.CNIC === username && u.password === password
     );
 
     if (admin) {
         return res.json({ success: true, role: "admin" });
     }
 
-    // USER LOGIN (CNIC)
-    const user = excelUsers.find(
-        u => String(u.CNIC).trim() === String(username).trim()
-    );
+    const user = users.find(u => u.CNIC === username);
 
     if (user) {
-        return res.json({ success: true, role: "user" });
+        return res.json({ success: true, role: "user", cnic: user.CNIC });
     }
 
-    return res.json({
-        success: false,
-        message: "Invalid login"
+    res.json({ success: false, message: "Invalid login" });
+});
+
+// =========================
+// GET USERS
+// =========================
+app.get("/users", (req, res) => {
+    res.json(readUsers());
+});
+
+// =========================
+// UPDATE PHONE
+// =========================
+app.post("/update-user-phone", (req, res) => {
+
+    const { CNIC, Phone } = req.body;
+
+    let users = readUsers();
+
+    let user = users.find(u => u.CNIC === CNIC);
+
+    if (!user) {
+        return res.json({
+            success: false,
+            message: "User not found"
+        });
+    }
+
+    user.Phone = Phone;
+
+    saveUsers(users);
+
+    res.json({
+        success: true,
+        message: "Phone updated successfully"
     });
 });
 
-/* ======================
-   GET ALL USERS (ADMIN)
-====================== */
-app.get("/users", (req, res) => {
-    res.json(excelUsers);
-});
-
-/* ======================
-   GET SINGLE CNIC
-====================== */
-app.get("/cnic/:cnic", (req, res) => {
-    const user = excelUsers.find(
-        u => String(u.CNIC).trim() === String(req.params.cnic).trim()
-    );
-
-    if (!user) {
-        return res.json({ message: "No record found" });
-    }
-
-    res.json(user);
-});
-
-/* ======================
-   PAGES
-====================== */
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/admin", (req, res) => {
-    res.sendFile(path.join(__dirname, "admin.html"));
-});
-
-app.get("/user", (req, res) => {
-    res.sendFile(path.join(__dirname, "user.html"));
-});
-
-/* ======================
-   START SERVER
-====================== */
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, "0.0.0.0", () => {
-    console.log("Server running on port " + PORT);
+// =========================
+// START SERVER
+// =========================
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });

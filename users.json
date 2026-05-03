@@ -1,0 +1,508 @@
+[
+  {
+    "CNIC": "admin",
+    "role": "admin",
+    "password": "1234",
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-6383478-5",
+    "Name": "Ahmed Qureshi",
+    "Plot_No": "A-20",
+    "Plot_Size": "1 Marla",
+    "Status": "Pending",
+    "Development_Charges": "pending",
+    "Cost_of_Land": "done",
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-3876568-4",
+    "Name": "Hamza Khan",
+    "Plot_No": "A-3",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 572313,
+    "Cost_of_Land": 203502,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-4285144-7",
+    "Name": "Ahmed Raza",
+    "Plot_No": "A-13",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 117429,
+    "Cost_of_Land": 289065,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-2997846-2",
+    "Name": "Zain Ahmed",
+    "Plot_No": "A-7",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 879171,
+    "Cost_of_Land": 45493,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8450566-6",
+    "Name": "Ali Raza",
+    "Plot_No": "A-9",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 549375,
+    "Cost_of_Land": 221777,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-2932223-2",
+    "Name": "Usman Butt",
+    "Plot_No": "A-8",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 141135,
+    "Cost_of_Land": 110428,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-4319077-7",
+    "Name": "Usman Ali",
+    "Plot_No": "A-3",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 552626,
+    "Cost_of_Land": 319592,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-2988559-3",
+    "Name": "Ahsan Khan",
+    "Plot_No": "A-2",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 812413,
+    "Cost_of_Land": 261815,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-6856292-1",
+    "Name": "Hamza Malik",
+    "Plot_No": "A-4",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 728102,
+    "Cost_of_Land": 18819,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8730600-2",
+    "Name": "Saad Butt",
+    "Plot_No": "A-20",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 747050,
+    "Cost_of_Land": 418014,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-5084213-6",
+    "Name": "Bilal Khan",
+    "Plot_No": "A-20",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 713447,
+    "Cost_of_Land": 428766,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-1246908-2",
+    "Name": "Ahmed Sheikh",
+    "Plot_No": "A-12",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 737316,
+    "Cost_of_Land": 493100,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-9849956-1",
+    "Name": "Saad Ahmed",
+    "Plot_No": "A-6",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 420249,
+    "Cost_of_Land": 175920,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-1329685-2",
+    "Name": "Bilal Ali",
+    "Plot_No": "A-2",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 675372,
+    "Cost_of_Land": 177301,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-5385366-3",
+    "Name": "Ali Khan",
+    "Plot_No": "A-16",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 522151,
+    "Cost_of_Land": 221864,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-9575928-6",
+    "Name": "Ahmed Khan",
+    "Plot_No": "A-19",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 257123,
+    "Cost_of_Land": 41551,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-4432520-5",
+    "Name": "Hamza Ali",
+    "Plot_No": "A-15",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 566395,
+    "Cost_of_Land": 379425,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8191087-7",
+    "Name": "Zain Sheikh",
+    "Plot_No": "A-6",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 540695,
+    "Cost_of_Land": 27020,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-2775891-5",
+    "Name": "Omar Qureshi",
+    "Plot_No": "A-3",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 560449,
+    "Cost_of_Land": 345510,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-4954836-3",
+    "Name": "Zain Raza",
+    "Plot_No": "A-18",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 752333,
+    "Cost_of_Land": 267555,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8676146-5",
+    "Name": "Bilal Malik",
+    "Plot_No": "A-2",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 770530,
+    "Cost_of_Land": 464990,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-1553008-5",
+    "Name": "Ahmed Malik",
+    "Plot_No": "A-8",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 936704,
+    "Cost_of_Land": 88810,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8597820-2",
+    "Name": "Hassan Khan",
+    "Plot_No": "A-11",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 798885,
+    "Cost_of_Land": 63067,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-7456766-2",
+    "Name": "Zain Qureshi",
+    "Plot_No": "A-20",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 201384,
+    "Cost_of_Land": 112222,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-2144399-7",
+    "Name": "Usman Butt",
+    "Plot_No": "A-6",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 597991,
+    "Cost_of_Land": 494380,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-1917854-3",
+    "Name": "Usman Butt",
+    "Plot_No": "A-4",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 317410,
+    "Cost_of_Land": 83200,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-3610569-2",
+    "Name": "Zain Malik",
+    "Plot_No": "A-1",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 742913,
+    "Cost_of_Land": 142694,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-1003101-4",
+    "Name": "Hassan Ahmed",
+    "Plot_No": "A-3",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 469632,
+    "Cost_of_Land": 195444,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-6800535-8",
+    "Name": "Zain Khan",
+    "Plot_No": "A-2",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 526220,
+    "Cost_of_Land": 162498,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-2812564-8",
+    "Name": "Omar Butt",
+    "Plot_No": "A-8",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 439322,
+    "Cost_of_Land": 318848,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-1063491-8",
+    "Name": "Bilal Butt",
+    "Plot_No": "A-9",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 540710,
+    "Cost_of_Land": 173841,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-1772141-4",
+    "Name": "Omar Butt",
+    "Plot_No": "A-12",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 682666,
+    "Cost_of_Land": 95542,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-5991416-8",
+    "Name": "Zain Butt",
+    "Plot_No": "A-18",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 568957,
+    "Cost_of_Land": 329404,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-7876164-3",
+    "Name": "Ahsan Khan",
+    "Plot_No": "A-14",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 877664,
+    "Cost_of_Land": 490055,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-4680955-4",
+    "Name": "Ahsan Khan",
+    "Plot_No": "A-10",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 362193,
+    "Cost_of_Land": 187628,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8804951-8",
+    "Name": "Omar Raza",
+    "Plot_No": "A-2",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 470693,
+    "Cost_of_Land": 176282,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8096901-1",
+    "Name": "Ali Butt",
+    "Plot_No": "A-1",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 430219,
+    "Cost_of_Land": 60628,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-2393696-4",
+    "Name": "Saad Butt",
+    "Plot_No": "A-13",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 486206,
+    "Cost_of_Land": 307073,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-6568575-7",
+    "Name": "Omar Ahmed",
+    "Plot_No": "A-20",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 610065,
+    "Cost_of_Land": 225527,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-7946909-8",
+    "Name": "Usman Ali",
+    "Plot_No": "A-7",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 363125,
+    "Cost_of_Land": 12574,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-3413083-4",
+    "Name": "Ali Sheikh",
+    "Plot_No": "A-13",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 255248,
+    "Cost_of_Land": 355177,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-8906655-5",
+    "Name": "Ahsan Raza",
+    "Plot_No": "A-10",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 475429,
+    "Cost_of_Land": 320462,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-3418698-8",
+    "Name": "Ahmed Khan",
+    "Plot_No": "A-1",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 311707,
+    "Cost_of_Land": 123328,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-4121356-6",
+    "Name": "Usman Ahmed",
+    "Plot_No": "A-16",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 711911,
+    "Cost_of_Land": 337639,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-5117428-4",
+    "Name": "Usman Khan",
+    "Plot_No": "A-10",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 708266,
+    "Cost_of_Land": 52797,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-6646318-2",
+    "Name": "Zain Raza",
+    "Plot_No": "A-15",
+    "Plot_Size": "10 Marla",
+    "Status": "Pending",
+    "Development_Charges": 492978,
+    "Cost_of_Land": 323191,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-6451950-4",
+    "Name": "Saad Ali",
+    "Plot_No": "A-10",
+    "Plot_Size": "1 Kanal",
+    "Status": "Pending",
+    "Development_Charges": 449099,
+    "Cost_of_Land": 11759,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-3292575-9",
+    "Name": "Ahmed Ali",
+    "Plot_No": "A-4",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 590211,
+    "Cost_of_Land": 120716,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-5278477-6",
+    "Name": "Ali Butt",
+    "Plot_No": "A-1",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 616310,
+    "Cost_of_Land": 351496,
+    "Phone": "N/A"
+  },
+  {
+    "CNIC": "35202-4969114-5",
+    "Name": "Omar Sheikh",
+    "Plot_No": "A-11",
+    "Plot_Size": "5 Marla",
+    "Status": "Pending",
+    "Development_Charges": 817267,
+    "Cost_of_Land": 7529,
+    "Phone": "N/A"
+  }
+]
